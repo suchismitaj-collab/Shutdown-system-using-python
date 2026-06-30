@@ -1,35 +1,16 @@
-import subprocess
 import pyautogui
 import time
 
-# Run the Python script
-result = subprocess.run(
-    ["python", "file.py"],
-    capture_output=True,
-    text=True
-)
+print("Shutting down the computer in 5 seconds...")
+time.sleep(5)
 
-# Print its output
-print(result.stdout)
+# Open the Run dialog
+pyautogui.hotkey('win', 'r')
+time.sleep(1)
 
-# Check if it executed successfully
-if result.returncode == 0:
-    print("Program executed successfully.")
-    print("Shutting down in 5 seconds...")
+# Type the shutdown command
+pyautogui.write("shutdown /s /t 0", interval=0.05)
+time.sleep(0.5)
 
-    time.sleep(5)
-
-    # Open Run dialog
-    pyautogui.hotkey('win', 'r')
-    time.sleep(1)
-
-    # Type shutdown command
-    pyautogui.write("shutdown /s /t 0", interval=0.05)
-    time.sleep(0.5)
-
-    # Press Enter
-    pyautogui.press('enter')
-
-else:
-    print("Program failed.")
-    print(result.stderr)
+# Press Enter
+pyautogui.press('enter')
